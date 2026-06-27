@@ -1,7 +1,7 @@
 const connection = require("../database/connection");
 const time = require("../utils/time");
 
-async function saveUser(user,rl,mainMenu,pause) {
+async function saveUser(user) {
     
     await time();
     
@@ -20,7 +20,6 @@ async function saveUser(user,rl,mainMenu,pause) {
     console.log("Cadastro realizado com sucesso! ✅");
     console.log("🆔: ", result.insertId);
     
-    pause(rl, () => mainMenu(rl,pause));
 }
 
 module.exports = {saveUser};

@@ -1,43 +1,42 @@
 const registerUser = require("../services/registerUser");
 const login = require("../services/login");
+const pause = require("../utils/pause");
 
-async function mainMenu(rl,pause) {
+async function mainMenu(rl) {
     
     console.clear();
     console.log("=====================================");
     console.log("🌐 SISTEMA DE CONTROLE DE ESTOQUE 🌐");
     console.log("=====================================\n");
 
-    console.log("1. Criar usuário 👤");
+    console.log("1. Cadastrar usuário 👤");
     console.log("2. Fazer login 💾");
     console.log("0. Sair ❌");
 
-    rl.question(`\n📌 - Selecione a opção que deseja: `, (option) => {
+    let option = await rl.question("\n📌 - Selecione a opção que deseja: ");
 
         option = Number(option);
 
         switch (option) {
 
             case 1:
-                registerUser(rl,mainMenu,pause);               
+                await registerUser(rl,mainMenu);               
                 break;
         
             case 2:
-                login();
+                await login();
                 break;
 
             case 0:
                 console.log("Saindo.. ❌");
                 rl.close();
-                break;
+                return;
 
             default:
                 console.log("Opção inválida! 🚫");
-                mainMenu();
-                break;
+                await pause(rl);
+                return mainMenu(rl);
         }
-
-    });
 }
 
 module.exports = mainMenu;

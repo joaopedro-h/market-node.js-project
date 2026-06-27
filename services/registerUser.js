@@ -1,28 +1,31 @@
 const User = require("../models/User");
+const encryptPassword = require("../utils/encryptPassword");
 const {saveUser} = require("./saveUser");
+const pause = require("../utils/pause");
 
-async function registerUser(rl,mainMenu,pause) {
+async function registerUser(rl,mainMenu) {
     
     console.clear();
     console.log("REGISTRO DE USÚARIO 👤\n");
 
-    rl.question(`🪪  - Insira o seu nome:`, async (userName) => {
+    const userName = await rl.question("🪪  - Insira o seu nome: ");
 
-        rl.question(`\n📩 - Insira o seu email: `, async (email) => {
+        const email = await rl.question ("\n📩 - Insira o seu email: ");
 
-            rl.question(`\n🔑 - Insira sua senha: `, async (password) => {
+            const password = await rl.question("\n🔑 - Insira sua senha: ");
+
+                const encryptedPassword = await encryptPassword(password);
 
                 const user = new User(
                     userName,
                     email,
-                    password
+                    encryptedPassword
                 );
 
-                await saveUser(user,rl,mainMenu,pause);
+                await saveUser(user);
+                await pause(rl);
+                return mainMenu(rl);
 
-            });
-        });
-    });
 }
 
 module.exports = registerUser;

@@ -1,4 +1,4 @@
-const readline = require("readline");
+const readline = require("node:readline/promises");
 
 const rl = readline.createInterface({
     input: process.stdin,
@@ -6,6 +6,5 @@ const rl = readline.createInterface({
 });
 
 const mainMenu = require("./menus/mainMenu");
-const pause = require("./utils/pause");
 
-mainMenu(rl,pause); 
+mainMenu(rl); 
