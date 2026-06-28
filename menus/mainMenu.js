@@ -24,7 +24,7 @@ async function mainMenu(rl) {
                 break;
         
             case 2:
-                await login();
+                await login(rl,mainMenu);
                 break;
 
             case 0:
