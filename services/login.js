@@ -1,6 +1,6 @@
 const connection = require("../database/connection");
 const decryptPassword = require("../utils/decryptPassword");
-const internalSystem = require("../menus/internalSystem");
+const internalSystemMenu = require("../menus/internalSystemMenu");
 const time = require("../utils/time");
 const pause = require("../utils/pause");
 
@@ -39,7 +39,7 @@ async function login(rl,mainMenu) {
         console.log("Logado com sucesso! ✅");
         console.log("🆔: ", user.id);
         await time();
-        internalSystem(user);
+        internalSystemMenu(user,rl);
         return;
         
     }else {
