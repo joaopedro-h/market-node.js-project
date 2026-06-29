@@ -32,7 +32,7 @@ async function internalSystemMenu(user,rl) {
                 break;
             
             case 2:
-                categoriesMenu();
+                categoriesMenu(rl,internalSystemMenu);
                 break;
 
             case 3:
@@ -52,17 +52,15 @@ async function internalSystemMenu(user,rl) {
                 break;
 
             case 0:
-                console.log("Saindo.. ❌");
+                console.log("\nSaindo.. ❌");
                 rl.close();
                 return;
 
             default:
-                console.log("Opção inválida! 🚫");
+                console.log("\nOpção inválida! 🚫");
                 await pause(rl);
-                return internalSystemMenu(rl);
+                return internalSystemMenu(user,rl);
         }
-    
-    
 }
 
 module.exports = internalSystemMenu;
