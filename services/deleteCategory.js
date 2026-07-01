@@ -1,4 +1,5 @@
 const connection = require("../database/connection");
+const time = require("../utils/time");
 const pause = require("../utils/pause");
 
 async function deleteCategory(rl,categoriesMenu) {
@@ -27,13 +28,13 @@ async function deleteCategory(rl,categoriesMenu) {
     await connection.execute(sqlDeleteCategory,[selectCategory]);
     const [updatedCategories] = await connection.execute(sqlCategories);
 
-    console.clear();
+    await time();
     console.log("Categoria excluída com sucesso! ✅\n");
 
     console.log("📦 ============ CATEGORIAS ATUALIZADAS ============ 📦\n");
 
     for (const category of updatedCategories) {
-    console.log(`${category.id}. ${category.name}`);
+    console.log(`🆔 : ${category.id}\n🪪  - Nome: ${category.name}`);
     }
 
     await pause(rl);
