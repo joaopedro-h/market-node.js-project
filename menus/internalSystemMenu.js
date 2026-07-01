@@ -36,7 +36,7 @@ async function internalSystemMenu(user,rl) {
                 break;
 
             case 3:
-                suppliersMenu();
+                suppliersMenu(rl);
                 break;
 
             case 4:

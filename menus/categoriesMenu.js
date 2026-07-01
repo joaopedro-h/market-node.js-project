@@ -1,4 +1,4 @@
-const registerCategorie = require("../services/registerCategorie");
+const registerCategory = require("../services/registerCategory");
 const listCategories = require("../services/listCategories");
 const editCategory = require("../services/editCategory");
 const deleteCategory = require("../services/deleteCategory");
@@ -22,7 +22,7 @@ async function categoriesMenu(rl,internalSystemMenu) {
         switch (option) {
 
             case 1:
-                registerCategorie(rl,categoriesMenu);
+                registerCategory(rl,categoriesMenu);
                 break;
             
             case 2:

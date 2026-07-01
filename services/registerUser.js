@@ -6,7 +6,7 @@ const pause = require("../utils/pause");
 async function registerUser(rl,mainMenu) {
     
     console.clear();
-    console.log("REGISTRO DE USÚARIO 👤\n");
+    console.log("👤 ============ CADASTRAR USUÁRIO ============ 👤\n");
 
     const userName = await rl.question("🪪  - Insira o seu nome: ");
 
