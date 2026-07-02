@@ -1,0 +1,64 @@
+const connection = require("../database/connection");
+const editSupplierName = require("../services/editSupplierName");
+const editSupplierEmail = require("../services/editSupplierEmail");
+const editSupplierPhone = require("../services/editSupplierPhone");
+const pause = require("../utils/pause");
+
+async function supplierEditMenu(rl,suppliersMenu) {
+    
+    console.clear();
+    console.log("🚚 ============ EDITAR FORNECEDORES ============ 🚚\n");
+
+    const sqlSuppliers =
+    `SELECT 
+     id,
+     company_name,
+     email,
+     phone
+    FROM suppliers;`
+
+    const [suppliers] = await connection.execute(sqlSuppliers);
+
+    for (const supplier of suppliers) {
+        console.log(`🆔 : ${supplier.id}\n🪪  - Nome: ${supplier.company_name}\n📩 - Email: ${supplier.email}\n📞 - Telefone: ${supplier.phone}\n`);
+    }
+
+    const supplierId = await rl.question("📌 - Selecione o ID do fornecedor que deseja editar: ");
+
+    console.clear();
+    console.log("1. Nome 🪪");
+    console.log("2. Email 📩");
+    console.log("3. Telefone 📞");
+    console.log("0. Voltar ↩️");
+    
+    let option = await rl.question("\n📌 - Selecione a edição que deseja: ");
+    
+        option = Number(option);
+
+        switch (option) {
+
+            case 1:
+                editSupplierName(rl,suppliersMenu,supplierId);
+                break;
+            
+            case 2:
+                editSupplierEmail(rl,suppliersMenu,supplierId);
+                break;
+
+            case 3:
+                editSupplierPhone(rl,suppliersMenu,supplierId);
+                break;
+
+            case 0:
+                console.log("\nVoltando.. ↩️");
+                await pause(rl);
+                return suppliersMenu(rl);
+
+            default:
+                console.log("\nOpção inválida! 🚫");
+                await pause(rl);
+                return supplierEditMenu(rl);
+        }
+}
+
+module.exports = supplierEditMenu;

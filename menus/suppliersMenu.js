@@ -1,6 +1,6 @@
 const registerSupplier = require("../services/registerSupplier");
 const listSuppliers = require("../services/listSuppliers");
-const editSupplier = require("../services/editSupplier");
+const supplierEditMenu = require("./supplierEditMenu")
 const deleteSupplier = require("../services/deleteSupplier");
 const pause = require("../utils/pause");
 
@@ -30,7 +30,7 @@ async function suppliersMenu(rl) {
                 break;
 
             case 3:
-                editSupplier();
+                supplierEditMenu(rl,suppliersMenu);
                 break;
 
             case 4:
