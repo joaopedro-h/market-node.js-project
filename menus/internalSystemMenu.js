@@ -32,11 +32,11 @@ async function internalSystemMenu(user,rl) {
                 break;
             
             case 2:
-                categoriesMenu(rl,internalSystemMenu);
+                categoriesMenu(user,rl,internalSystemMenu);
                 break;
 
             case 3:
-                suppliersMenu(rl);
+                suppliersMenu(user,rl,internalSystemMenu);
                 break;
 
             case 4:

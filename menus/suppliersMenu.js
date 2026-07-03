@@ -4,7 +4,7 @@ const supplierEditMenu = require("./supplierEditMenu")
 const deleteSupplier = require("../services/deleteSupplier");
 const pause = require("../utils/pause");
 
-async function suppliersMenu(rl) {
+async function suppliersMenu(user,rl,internalSystemMenu) {
     
     console.clear();
     console.log("🚚 ============ FORNECEDORES ============ 🚚\n");
@@ -22,30 +22,30 @@ async function suppliersMenu(rl) {
         switch (option) {
 
             case 1:
-                registerSupplier(rl,suppliersMenu);
+                registerSupplier(user,rl,suppliersMenu,internalSystemMenu);
                 break;
             
             case 2:
-                listSuppliers(rl,suppliersMenu);
+                listSuppliers(user,rl,suppliersMenu,internalSystemMenu);
                 break;
 
             case 3:
-                supplierEditMenu(rl,suppliersMenu);
+                supplierEditMenu(user,rl,suppliersMenu,internalSystemMenu);
                 break;
 
             case 4:
-                deleteSupplier(rl,suppliersMenu);
+                deleteSupplier(user,rl,suppliersMenu,internalSystemMenu);
                 break;
 
             case 0:
                 console.log("\nVoltando.. ↩️");
                 await pause(rl);
-                return internalSystemMenu(rl);
+                return internalSystemMenu(user,rl);
 
             default:
                 console.log("\nOpção inválida! 🚫");
                 await pause(rl);
-                return suppliersMenu(rl);
+                return suppliersMenu(user,rl,internalSystemMenu);
         }
 }
 

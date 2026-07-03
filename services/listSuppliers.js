@@ -1,7 +1,7 @@
 const connection = require("../database/connection");
 const pause = require("../utils/pause");
 
-async function listSuppliers(rl,suppliersMenu) {
+async function listSuppliers(user,rl,suppliersMenu,internalSystemMenu) {
     
     console.clear();
     console.log("🚚 ============ FORNECEDORES CADASTRADOS ============ 🚚\n");
@@ -21,7 +21,7 @@ async function listSuppliers(rl,suppliersMenu) {
     }
 
     await pause(rl);
-    return suppliersMenu(rl);
+    return suppliersMenu(user,rl,internalSystemMenu);
 
 }
 

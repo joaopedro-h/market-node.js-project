@@ -1,11 +1,12 @@
 const connection = require("../database/connection");
 const time = require("../utils/time");
 const pause = require("../utils/pause");
+const internalSystemMenu = require("../menus/internalSystemMenu");
 
-async function deleteSupplier(rl,suppliersMenu) {
+async function deleteSupplier(user,rl,suppliersMenu,internalSystemMenu) {
     
     console.clear();
-    console.log("🚚 ============ EXCLUIR CATEGORIA ============ 🚚\n");
+    console.log("🚚 ============ EXCLUIR FORNECEDOR ============ 🚚\n");
 
     const sqlSuppliers =
     `SELECT 
@@ -40,7 +41,7 @@ async function deleteSupplier(rl,suppliersMenu) {
     }
 
     await pause(rl);
-    return suppliersMenu(rl);
+    return suppliersMenu(user,rl,internalSystemMenu);
 
 }
 

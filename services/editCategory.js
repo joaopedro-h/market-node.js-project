@@ -1,7 +1,7 @@
 const connection = require("../database/connection");
 const pause = require("../utils/pause");
 
-async function editCategory(rl,categoriesMenu) {
+async function editCategory(user,rl,categoriesMenu,internalSystemMenu) {
     
     console.clear();
     console.log("📦 ============ EDITAR CATEGORIA ============ 📦\n");
@@ -44,7 +44,7 @@ async function editCategory(rl,categoriesMenu) {
     }
 
     await pause(rl);
-    return categoriesMenu(rl);
+    return categoriesMenu(user,rl,internalSystemMenu);
 
 }
 

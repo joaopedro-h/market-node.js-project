@@ -4,7 +4,7 @@ const editSupplierEmail = require("../services/editSupplierEmail");
 const editSupplierPhone = require("../services/editSupplierPhone");
 const pause = require("../utils/pause");
 
-async function supplierEditMenu(rl,suppliersMenu) {
+async function supplierEditMenu(user,rl,suppliersMenu,internalSystemMenu) {
     
     console.clear();
     console.log("🚚 ============ EDITAR FORNECEDORES ============ 🚚\n");
@@ -38,26 +38,26 @@ async function supplierEditMenu(rl,suppliersMenu) {
         switch (option) {
 
             case 1:
-                editSupplierName(rl,suppliersMenu,supplierId);
+                editSupplierName(user,rl,suppliersMenu,internalSystemMenu,supplierId);
                 break;
             
             case 2:
-                editSupplierEmail(rl,suppliersMenu,supplierId);
+                editSupplierEmail(user,rl,suppliersMenu,internalSystemMenu,supplierId);
                 break;
 
             case 3:
-                editSupplierPhone(rl,suppliersMenu,supplierId);
+                editSupplierPhone(user,rl,suppliersMenu,internalSystemMenu,supplierId);
                 break;
 
             case 0:
                 console.log("\nVoltando.. ↩️");
                 await pause(rl);
-                return suppliersMenu(rl);
+                return suppliersMenu(user,rl,internalSystemMenu);
 
             default:
                 console.log("\nOpção inválida! 🚫");
                 await pause(rl);
-                return supplierEditMenu(rl);
+                return supplierEditMenu(user,rl,suppliersMenu,internalSystemMenu);
         }
 }
 

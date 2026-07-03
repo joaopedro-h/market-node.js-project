@@ -1,7 +1,7 @@
 const connection = require("../database/connection");
 const pause = require("../utils/pause");
 
-async function listCategories(rl,categoriesMenu) {
+async function listCategories(user,rl,categoriesMenu,internalSystemMenu) {
     
     console.clear();
     console.log("📦 ============ CATEGORIAS CADASTRADAS ============ 📦\n");
@@ -19,7 +19,7 @@ async function listCategories(rl,categoriesMenu) {
     }
 
     await pause(rl);
-    return categoriesMenu(rl);
+    return categoriesMenu(user,rl,internalSystemMenu);
 
 }
 

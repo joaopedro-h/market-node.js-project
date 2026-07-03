@@ -1,7 +1,7 @@
 const connection = require("../database/connection");
 const pause = require("../utils/pause");
 
-async function editSupplierPhone(rl,suppliersMenu,supplierId) {
+async function editSupplierPhone(user,rl,suppliersMenu,internalSystemMenu,supplierId) {
     
     console.clear();
     console.log("🚚 ============ EDITAR TELEFONE ============ 🚚\n");
@@ -23,7 +23,7 @@ async function editSupplierPhone(rl,suppliersMenu,supplierId) {
     console.log("\nTelefone alterado com sucesso! ✅");
 
     await pause(rl);
-    return suppliersMenu(rl);
+    return suppliersMenu(user,rl,internalSystemMenu);
 
 }
 

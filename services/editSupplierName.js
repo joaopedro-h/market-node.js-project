@@ -1,7 +1,7 @@
 const connection = require("../database/connection");
 const pause = require("../utils/pause");
 
-async function editSupplierName(rl,suppliersMenu,supplierId) {
+async function editSupplierName(user,rl,suppliersMenu,internalSystemMenu,supplierId) {
     
     console.clear();
     console.log("🚚 ============ EDITAR NOME ============ 🚚\n");
@@ -23,7 +23,7 @@ async function editSupplierName(rl,suppliersMenu,supplierId) {
     console.log("\nNome alterado com sucesso! ✅");
 
     await pause(rl);
-    return suppliersMenu(rl);
+    return suppliersMenu(user,rl,internalSystemMenu);
 
 }
 

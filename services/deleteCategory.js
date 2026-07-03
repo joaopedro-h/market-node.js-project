@@ -2,7 +2,7 @@ const connection = require("../database/connection");
 const time = require("../utils/time");
 const pause = require("../utils/pause");
 
-async function deleteCategory(rl,categoriesMenu) {
+async function deleteCategory(user,rl,categoriesMenu,internalSystemMenu) {
     
     console.clear();
     console.log("📦 ============ EXCLUIR CATEGORIA ============ 📦\n");
@@ -38,7 +38,7 @@ async function deleteCategory(rl,categoriesMenu) {
     }
 
     await pause(rl);
-    return categoriesMenu(rl);
+    return categoriesMenu(user,rl,internalSystemMenu);
 
 }
 

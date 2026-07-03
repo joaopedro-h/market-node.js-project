@@ -4,7 +4,7 @@ const editCategory = require("../services/editCategory");
 const deleteCategory = require("../services/deleteCategory");
 const pause = require("../utils/pause");
 
-async function categoriesMenu(rl,internalSystemMenu) {
+async function categoriesMenu(user,rl,internalSystemMenu) {
     
     console.clear();
     console.log("📦 ============ CATEGORIAS ============ 📦\n");
@@ -22,30 +22,30 @@ async function categoriesMenu(rl,internalSystemMenu) {
         switch (option) {
 
             case 1:
-                registerCategory(rl,categoriesMenu);
+                registerCategory(user,rl,categoriesMenu,internalSystemMenu);
                 break;
             
             case 2:
-                listCategories(rl,categoriesMenu);
+                listCategories(user,rl,categoriesMenu,internalSystemMenu);
                 break;
 
             case 3:
-                editCategory(rl,categoriesMenu);
+                editCategory(user,rl,categoriesMenu,internalSystemMenu);
                 break;
 
             case 4:
-                deleteCategory(rl,categoriesMenu);
+                deleteCategory(user,rl,categoriesMenu,internalSystemMenu);
                 break;
 
             case 0:
                 console.log("\nVoltando.. ↩️");
                 await pause(rl);
-                return internalSystemMenu(rl);
+                return internalSystemMenu(user,rl);
 
             default:
                 console.log("\nOpção inválida! 🚫");
                 await pause(rl);
-                return categoriesMenu(rl);
+                return categoriesMenu(user,rl,internalSystemMenu);
         }
 }
 

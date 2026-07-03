@@ -3,7 +3,7 @@ const validateEmailSupplier = require("../validations/validateEmailSupplier");
 const {saveSupplier} = require("./saveSupplier");
 const pause = require("../utils/pause");
 
-async function registerSupplier(rl,suppliersMenu) {
+async function registerSupplier(user,rl,suppliersMenu,internalSystemMenu) {
     
     console.clear();
     console.log("🚚 ============ CADASTRAR FORNECEDOR ============ 🚚\n");
@@ -17,7 +17,7 @@ async function registerSupplier(rl,suppliersMenu) {
             if (emailAlreadyExists) {
                 console.log("\nEmail já em uso! 🚫");
                 await pause(rl);
-                return registerSupplier(rl);
+                return registerSupplier(user,rl,suppliersMenu,internalSystemMenu);
             }
 
             const phone = await rl.question("\n📞 - Insira o telefone: ");
@@ -30,7 +30,7 @@ async function registerSupplier(rl,suppliersMenu) {
 
                 await saveSupplier(supplier);
                 await pause(rl);
-                return suppliersMenu(rl);
+                return suppliersMenu(user,rl,internalSystemMenu);
 }
 
 module.exports = registerSupplier;
