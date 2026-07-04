@@ -18,6 +18,12 @@ async function editCategory(user,rl,categoriesMenu,internalSystemMenu) {
         console.log(`${category.id}. ${category.name}`);
     }
 
+    if (categories.length === 0) {
+        console.log("Nenhuma categoria cadastrada! 🚫");
+        await pause(rl);
+        return categoriesMenu(user,rl,internalSystemMenu);
+    }
+
     const selectCategory = await rl.question("\n📌 - Selecione a categoria que deseja editar: ");
     const categoryUpdated = await rl.question("\n🏷️  - Informe o novo nome da categoria: ")
 

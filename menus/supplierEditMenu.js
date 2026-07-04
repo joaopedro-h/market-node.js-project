@@ -19,6 +19,12 @@ async function supplierEditMenu(user,rl,suppliersMenu,internalSystemMenu) {
 
     const [suppliers] = await connection.execute(sqlSuppliers);
 
+    if (suppliers.length === 0) {
+        console.log("Nenhum fornecedor cadastrado! 🚫");
+        await pause(rl);
+        return suppliersMenu(user,rl,internalSystemMenu);
+    }
+
     for (const supplier of suppliers) {
         console.log(`🆔 : ${supplier.id}\n🪪  - Nome: ${supplier.company_name}\n📩 - Email: ${supplier.email}\n📞 - Telefone: ${supplier.phone}\n`);
     }

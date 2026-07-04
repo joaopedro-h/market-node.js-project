@@ -14,6 +14,12 @@ async function listCategories(user,rl,categoriesMenu,internalSystemMenu) {
 
     const [categories] = await connection.execute(sqlCategories);
 
+    if (categories.length === 0) {
+        console.log("Nenhuma categoria cadastrada! 🚫");
+        await pause(rl);
+        return categoriesMenu(user,rl,internalSystemMenu);
+    }
+
     for (const category of categories) {
         console.log(`${category.id}. ${category.name}`);
     }
