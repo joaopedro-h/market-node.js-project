@@ -4,6 +4,7 @@ class Supplier {
         this.name = name;
         this.email = email;
         this.phone = phone;
+        
     }
 }
 

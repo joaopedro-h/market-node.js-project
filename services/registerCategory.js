@@ -7,7 +7,7 @@ async function registerCategory(user,rl,categoriesMenu,internalSystemMenu) {
     console.clear();
     console.log("📦 ============ CADASTRAR CATEGORIA ============ 📦\n");
 
-    const categoryName = await rl.question(`🏷️  - Insira o nome da categoria: `);
+    const categoryName = await rl.question(`🪪  - Insira o nome da categoria: `);
 
     const category = new Category(
         categoryName

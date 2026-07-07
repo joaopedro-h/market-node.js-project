@@ -28,7 +28,7 @@ async function internalSystemMenu(user,rl) {
         switch (option) {
 
             case 1:
-                productsMenu(rl);
+                productsMenu(user,rl,internalSystemMenu);
                 break;
             
             case 2:

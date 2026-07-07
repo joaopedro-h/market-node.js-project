@@ -1,6 +1,7 @@
 const registerProduct = require("../services/registerProduct");
+const pause = require("../utils/pause");
 
-async function productsMenu(rl) {
+async function productsMenu(user,rl,internalSystemMenu) {
     
     console.clear();
     console.log("📦 ============ PRODUTOS ============ 📦\n");
@@ -19,7 +20,7 @@ async function productsMenu(rl) {
         switch (option) {
 
             case 1:
-                registerProduct(rl);
+                registerProduct(user,rl,productsMenu,internalSystemMenu);
                 break;
             
             case 2:
@@ -39,9 +40,9 @@ async function productsMenu(rl) {
                 break;
 
             case 0:
-                console.log("Saindo.. ❌");
-                rl.close();
-                return;
+                console.log("\nVoltando.. ↩️");
+                await pause(rl);
+                return internalSystemMenu(user,rl);
 
             default:
                 console.log("Opção inválida! 🚫");
