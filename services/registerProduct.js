@@ -79,7 +79,7 @@ async function registerProduct(user,rl,productsMenu,internalSystemMenu) {
     }
 
     const productSupplierId = Number(await rl.question(`\n🆔 - Escolha o ID do fornecedor que deseja: `));
-    const supplierExists = categories.find(supplier => supplier.id === productSupplierId);
+    const supplierExists = suppliers.find(supplier => supplier.id === productSupplierId);
 
     if (!supplierExists) {
         console.log("\nFornecedor não encontrado! 🚫"); 

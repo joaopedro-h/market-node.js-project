@@ -1,5 +1,6 @@
 const registerProduct = require("../services/registerProduct");
 const listProducts = require("../services/listProducts");
+const searchProduct = require("../services//searchProduct");
 const pause = require("../utils/pause");
 
 async function productsMenu(user,rl,internalSystemMenu) {
@@ -29,7 +30,7 @@ async function productsMenu(user,rl,internalSystemMenu) {
                 break;
 
             case 3:
-                searchProduct();
+                searchProduct(user,rl,productsMenu,internalSystemMenu);
                 break;
 
             case 4:
