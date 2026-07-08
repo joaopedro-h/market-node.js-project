@@ -41,18 +41,18 @@ async function registerProduct(user,rl,productsMenu,internalSystemMenu) {
 
     const productName = await rl.question(`🪪  - Insira o nome do produto: `);
 
-        const productPrice = await rl.question(`\n💰 - Insira o preço do produto: `);
+        const productPrice = Number(await rl.question(`\n💰 - Insira o preço do produto: `));
 
         if (isNaN(productPrice) || productPrice <= 0) {
-            console.log("Valor inválido! 🚫"); 
+            console.log("\nValor inválido! 🚫"); 
             await pause(rl);
             return registerProduct(user,rl,productsMenu,internalSystemMenu);                               
         }
 
-            const productQuantity = await rl.question(`\n🔢 - Insira a quantidade do produto: `);
+            const productQuantity = Number(await rl.question(`\n🔢 - Insira a quantidade do produto: `));
 
             if (isNaN(productQuantity) || productQuantity <= 0) {
-                console.log("Quantidade inválida! 🚫"); 
+                console.log("\nQuantidade inválida! 🚫"); 
                 await pause(rl);
                 return registerProduct(user,rl,productsMenu,internalSystemMenu);                               
             }
@@ -64,21 +64,35 @@ async function registerProduct(user,rl,productsMenu,internalSystemMenu) {
         console.log(`${category.id}. ${category.name}`);
     }
 
-    const categoryId = await rl.question(`\n🆔 - Escolha o ID da categoria que deseja: `);
+    const productCategoryId = Number(await rl.question(`\n🆔 - Escolha o ID da categoria que deseja: `));
+    const categoryExists = categories.find(category => category.id === productCategoryId);
+
+    if (!categoryExists) {
+        console.log("\nCategoria não encontrada! 🚫"); 
+        await pause(rl); 
+        return registerProduct(user,rl,productsMenu,internalSystemMenu);        
+    }
 
     console.log("\n🚚 ============ FORNECEDORES CADASTRADOS ============ 🚚\n");
     for (const supplier of suppliers) {
         console.log(`🆔 : ${supplier.id}\n🪪  - Nome: ${supplier.company_name}\n📩 - Email: ${supplier.email}\n📞 - Telefone: ${supplier.phone}\n`);
     }
 
-    const supplierId = await rl.question(`\n🆔 - Escolha o ID do fornecedor que deseja: `);
+    const productSupplierId = Number(await rl.question(`\n🆔 - Escolha o ID do fornecedor que deseja: `));
+    const supplierExists = categories.find(supplier => supplier.id === productSupplierId);
+
+    if (!supplierExists) {
+        console.log("\nFornecedor não encontrado! 🚫"); 
+        await pause(rl); 
+        return registerProduct(user,rl,productsMenu,internalSystemMenu);        
+    }
 
     const product = new Product(
         productName,
         Number(productPrice),
         Number(productQuantity),
-        categoryId,
-        supplierId
+        productCategoryId,
+        productSupplierId
     );
 
     await saveProduct(product);
