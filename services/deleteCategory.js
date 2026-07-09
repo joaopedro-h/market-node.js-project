@@ -19,7 +19,7 @@ async function deleteCategory(user,rl,categoriesMenu,internalSystemMenu) {
         console.log(`${category.id}. ${category.name}`);
     }
 
-    const selectCategory = await rl.question("\n📌 - Selecione a categoria que deseja excluir: ");
+    const selectCategory = await rl.question("\n📌 - Selecione o ID da categoria que deseja excluir: ");
 
     const sqlDeleteCategory =
     `DELETE FROM categories

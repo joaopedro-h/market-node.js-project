@@ -1,7 +1,6 @@
 const connection = require("../database/connection");
 const time = require("../utils/time");
 const pause = require("../utils/pause");
-const internalSystemMenu = require("../menus/internalSystemMenu");
 
 async function deleteSupplier(user,rl,suppliersMenu,internalSystemMenu) {
     
@@ -22,7 +21,7 @@ async function deleteSupplier(user,rl,suppliersMenu,internalSystemMenu) {
         console.log(`🆔 : ${supplier.id}\n🪪  - Nome: ${supplier.company_name}\n📩 - Email: ${supplier.email}\n📞 - Telefone: ${supplier.phone}\n`);
     }
 
-    const selectSupplier = await rl.question("\n📌 - Selecione o fornecedor que deseja excluir: ");
+    const selectSupplier = await rl.question("\n📌 - Selecione o ID do fornecedor que deseja excluir: ");
 
     const sqlDeleteSupplier =
     `DELETE FROM suppliers
