@@ -55,19 +55,19 @@ async function productEditMenu(user,rl,productsMenu,internalSystemMenu) {
         switch (option) {
 
             case 1:
-                editProductName();
+                editProductName(user,rl,productsMenu,internalSystemMenu,productId);
                 break;
             
             case 2:
-                editProductPrice();
+                editProductPrice(user,rl,productsMenu,internalSystemMenu,productId);
                 break;
 
             case 3:
-                editProductCategory();
+                editProductCategory(user,rl,productsMenu,internalSystemMenu,productId);
                 break;
 
             case 4:
-                editProductSupplier();
+                editProductSupplier(user,rl,productsMenu,internalSystemMenu,productId);
                 break;
 
             case 0:
