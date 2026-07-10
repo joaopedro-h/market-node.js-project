@@ -40,7 +40,7 @@ async function internalSystemMenu(user,rl) {
                 break;
 
             case 4:
-                inventoryMovementsMenu();
+                inventoryMovementsMenu(user,rl,internalSystemMenu);
                 break;
 
             case 5:

@@ -49,9 +49,9 @@ async function productsMenu(user,rl,internalSystemMenu) {
                 return internalSystemMenu(user,rl);
 
             default:
-                console.log("Opção inválida! 🚫");
+                console.log("\nOpção inválida! 🚫");
                 await pause(rl);
-                return productsMenu(rl);
+                return productsMenu(user,rl,internalSystemMenu);
         }
 }
 
