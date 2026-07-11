@@ -25,7 +25,15 @@ async function editProductCategory(user,rl,productsMenu,internalSystemMenu,produ
         console.log(`${category.id}. ${category.name}\n`);
     }
 
-    const newCategory = await rl.question(`📌 - Selecione o ID da nova categoria que deseja: `);
+    const newCategory = Number(await rl.question(`📌 - Selecione o ID da nova categoria que deseja: `));
+
+    const categoryExists = categories.find(category => category.id === newCategory);
+
+    if (!categoryExists) {
+        console.log("\nCategoria não encontrada! 🚫"); 
+        await pause(rl);
+        return productsMenu(user,rl,internalSystemMenu);  
+    }
     
     const sqlEditCategory =
     `UPDATE products

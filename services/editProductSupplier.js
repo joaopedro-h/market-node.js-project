@@ -26,7 +26,15 @@ async function editProductSupplier(user,rl,productsMenu,internalSystemMenu,produ
         console.log(`🆔 : ${supplier.id}\n🪪  - Nome: ${supplier.company_name}\n📩 - Email: ${supplier.email}\n📞 - Telefone: ${supplier.phone}\n`);
     }
 
-    const newSupplier = await rl.question(`📌 - Selecione o ID do novo fornecedor que deseja: `);
+    const newSupplier = Number(await rl.question(`📌 - Selecione o ID do novo fornecedor que deseja: `));
+
+    const supplierExists = suppliers.find(supplier => supplier.id === newSupplier);
+
+    if (!supplierExists) {
+        console.log("\nFornecedor não encontrado! 🚫"); 
+        await pause(rl);
+        return productsMenu(user,rl,internalSystemMenu); 
+    }
     
     const sqlEditSupplier =
     `UPDATE products

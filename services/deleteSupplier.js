@@ -17,11 +17,25 @@ async function deleteSupplier(user,rl,suppliersMenu,internalSystemMenu) {
 
     const [suppliers] = await connection.execute(sqlSuppliers);
 
+    if (suppliers.length === 0) {
+        console.log("Nenhum fornecedor cadastrado! 🚫");
+        await pause(rl);
+        return suppliersMenu(user,rl,internalSystemMenu);
+    }
+
     for (const supplier of suppliers) {
         console.log(`🆔 : ${supplier.id}\n🪪  - Nome: ${supplier.company_name}\n📩 - Email: ${supplier.email}\n📞 - Telefone: ${supplier.phone}\n`);
     }
 
-    const selectSupplier = await rl.question("\n📌 - Selecione o ID do fornecedor que deseja excluir: ");
+    const selectSupplier = Number(await rl.question("\n📌 - Selecione o ID do fornecedor que deseja excluir: "));
+
+    const supplierExists = suppliers.find(supplier => supplier.id === selectSupplier);
+
+    if (!supplierExists) {
+        console.log("\nFornecedor não encontrado! 🚫"); 
+        await pause(rl);
+        return suppliersMenu(user,rl,internalSystemMenu);    
+    }
 
     const sqlDeleteSupplier =
     `DELETE FROM suppliers

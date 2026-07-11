@@ -39,7 +39,15 @@ async function productEditMenu(user,rl,productsMenu,internalSystemMenu) {
         console.log(`🆔 : ${product.id}\n🪪  - Nome: ${product.product_name}\n💰 - Preço: ${product.price}\n🔢 - Quantidade: ${product.quantity}\n🏷️  - Categoria: ${product.category_name}\n🚚 - Fornecedor: ${product.company_name}\n`);
     }
 
-    const productId = await rl.question("📌 - Selecione o ID do produto que deseja editar: ");
+    const productId = Number(await rl.question("📌 - Selecione o ID do produto que deseja editar: "));
+
+    const productExists = products.find(product => product.id === productId);
+
+    if (!productExists) {
+        console.log("\nProduto não encontrado! 🚫"); 
+        await pause(rl);
+        return productsMenu(user,rl,internalSystemMenu);     
+    }
 
     console.clear();
     console.log("1. Nome 🪪");

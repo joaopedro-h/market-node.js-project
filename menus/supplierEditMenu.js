@@ -29,7 +29,15 @@ async function supplierEditMenu(user,rl,suppliersMenu,internalSystemMenu) {
         console.log(`🆔 : ${supplier.id}\n🪪  - Nome: ${supplier.company_name}\n📩 - Email: ${supplier.email}\n📞 - Telefone: ${supplier.phone}\n`);
     }
 
-    const supplierId = await rl.question("📌 - Selecione o ID do fornecedor que deseja editar: ");
+    const supplierId = Number(await rl.question("📌 - Selecione o ID do fornecedor que deseja editar: "));
+
+    const supplierExists = suppliers.find(supplier => supplier.id === supplierId);
+
+    if (!supplierExists) {
+        console.log("\nFornecedor não encontrado! 🚫"); 
+        await pause(rl);
+        return suppliersMenu(user,rl,internalSystemMenu);    
+    }
 
     console.clear();
     console.log("1. Nome 🪪");

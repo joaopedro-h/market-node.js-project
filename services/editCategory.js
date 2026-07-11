@@ -24,7 +24,16 @@ async function editCategory(user,rl,categoriesMenu,internalSystemMenu) {
         return categoriesMenu(user,rl,internalSystemMenu);
     }
 
-    const selectCategory = await rl.question("\n📌 - Selecione a categoria que deseja editar: ");
+    const selectCategory = Number(await rl.question("\n📌 - Selecione a categoria que deseja editar: "));
+
+    const categoryExists = categories.find(category => category.id === selectCategory);
+
+    if (!categoryExists) {
+        console.log("\nCategoria não encontrada! 🚫"); 
+        await pause(rl);
+        return categoriesMenu(user,rl,internalSystemMenu);   
+    }
+
     const categoryUpdated = await rl.question("\n🏷️  - Informe o novo nome da categoria: ")
 
     const sqlEditCategory =

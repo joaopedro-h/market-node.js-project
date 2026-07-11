@@ -36,7 +36,15 @@ async function deleteProduct(user,rl,productsMenu,internalSystemMenu) {
         console.log(`🆔 : ${product.id}\n🪪  - Nome: ${product.product_name}\n💰 - Preço: ${product.price}\n🔢 - Quantidade: ${product.quantity}\n🏷️  - Categoria: ${product.category_name}\n🚚 - Fornecedor: ${product.company_name}\n`);
     }
 
-    const selectProduct = await rl.question("\n📌 - Selecione o ID do produto que deseja excluir: ");
+    const selectProduct = Number(await rl.question("\n📌 - Selecione o ID do produto que deseja excluir: "));
+
+    const productExists = products.find(product => product.id === selectProduct);
+
+    if (!productExists) {
+        console.log("\nProduto não encontrado! 🚫"); 
+        await pause(rl);
+        return productsMenu(user,rl,internalSystemMenu);  
+    }
 
     const sqlDeleteProduct =
     `DELETE FROM products

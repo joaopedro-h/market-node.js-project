@@ -37,7 +37,15 @@ async function stockEntry(user,rl,inventoryMovementsMenu,internalSystemMenu) {
         console.log(`🆔 : ${product.id}\n🪪  - Nome: ${product.product_name}\n💰 - Preço: ${product.price}\n🔢 - Quantidade: ${product.quantity}\n🏷️  - Categoria: ${product.category_name}\n🚚 - Fornecedor: ${product.company_name}\n`);
     }
 
-    const productId = await rl.question("📌 - Selecione o ID do produto que deseja: ");
+    const productId = Number(await rl.question("📌 - Selecione o ID do produto que deseja: "));
+
+    const productExists = products.find(product => product.id === productId);
+
+    if (!productExists) {
+        console.log("\nProduto não encontrado! 🚫"); 
+        await pause(rl);
+        return inventoryMovementsMenu(user,rl,internalSystemMenu);      
+    }
 
     const quantityToAdd = await rl.question(`\n🔢 - Informe quantas quantidades entraram: `)
 
@@ -61,7 +69,7 @@ async function stockEntry(user,rl,inventoryMovementsMenu,internalSystemMenu) {
     )
 
     await saveStockMovement(movement);
-    console.log("Unidades adicionadas com sucesso! ✅");
+    console.log("\nUnidades adicionadas com sucesso! ✅");
     await pause(rl);
     return inventoryMovementsMenu(user,rl,internalSystemMenu);
 
