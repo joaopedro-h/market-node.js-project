@@ -26,6 +26,10 @@ async function inventoryMovementsMenu(user,rl,internalSystemMenu) {
                 stockExit(user,rl,inventoryMovementsMenu,internalSystemMenu);
                 break;
 
+            case 3:
+                transactionHistory(user,rl,inventoryMovementsMenu,internalSystemMenu);
+                break;
+
             case 0:
                 console.log("\nVoltando.. ↩️");
                 await pause(rl);

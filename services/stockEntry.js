@@ -59,20 +59,41 @@ async function stockEntry(user,rl,inventoryMovementsMenu,internalSystemMenu) {
         productId
     ]
 
-    await connection.execute(sqlEditQuantity,valuesQuantity);
-
     const movement = new Movement (
         "Entrada",
         quantityToAdd,
         productId,
         user.id
     )
+    
+    const conn = await connection.getConnection();
 
-    await saveStockMovement(movement);
+    try {
+        
+        await conn.beginTransaction();
+
+        await conn.execute(sqlEditQuantity,valuesQuantity);
+
+        await saveStockMovement(conn,movement);
+
+        await conn.commit();
+
+    } catch (error) {
+        
+        console.log("Erro na movimentação de estoque! 🚫");
+        await conn.rollback();
+        await pause(rl);
+        return inventoryMovementsMenu(user,rl,internalSystemMenu);
+
+    } finally {
+
+        conn.release();
+    }
+    
     console.log("\nUnidades adicionadas com sucesso! ✅");
     await pause(rl);
     return inventoryMovementsMenu(user,rl,internalSystemMenu);
-
+    
 }
 
 module.exports = stockEntry;

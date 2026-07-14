@@ -1,7 +1,6 @@
-const connection = require("../database/connection");
 const time = require("../utils/time");
 
-async function saveStockMovement(movement) {
+async function saveStockMovement(conn,movement) {
     
     await time();
     
@@ -16,7 +15,7 @@ async function saveStockMovement(movement) {
         movement.userId
     ]
 
-    const [result] = await connection.execute(sqlSaveMovement,valuesMovement);
+    const [result] = await conn.execute(sqlSaveMovement,valuesMovement);
 
     console.log("🆔 da movimentação: ", result.insertId);
 
