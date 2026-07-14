@@ -1,5 +1,6 @@
 const stockEntry = require("../services/stockEntry");
 const stockExit = require("../services/stockExit");
+const stockMovementHistory = require("../services/stockMovementHistory");
 const pause = require("../utils/pause");
 
 async function inventoryMovementsMenu(user,rl,internalSystemMenu) {
@@ -27,7 +28,7 @@ async function inventoryMovementsMenu(user,rl,internalSystemMenu) {
                 break;
 
             case 3:
-                transactionHistory(user,rl,inventoryMovementsMenu,internalSystemMenu);
+                stockMovementHistory(user,rl,inventoryMovementsMenu,internalSystemMenu);
                 break;
 
             case 0:
