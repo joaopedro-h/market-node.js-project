@@ -49,6 +49,12 @@ async function stockEntry(user,rl,inventoryMovementsMenu,internalSystemMenu) {
 
     const quantityToRemove  = await rl.question(`\n🔢 - Informe quantas quantidades saíram: `)
 
+    if (isNaN(quantityToRemove) || quantityToRemove <=0) {
+        console.log("Quantidade inválida! 🚫");
+        await pause(rl);
+        return inventoryMovementsMenu(user,rl,internalSystemMenu);
+    }
+
     const sqlEditQuantity =
     `UPDATE products
      SET quantity = quantity - ?

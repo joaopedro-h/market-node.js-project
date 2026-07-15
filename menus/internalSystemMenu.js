@@ -4,6 +4,7 @@ const suppliersMenu = require("./suppliersMenu");
 const inventoryMovementsMenu = require("./inventoryMovementsMenu");
 const relatorysMenu = require("./relatorysMenu");
 const myAccountMenu = require("./myAccountMenu");
+const reportsMenu = require("./reportsMenu");
 const pause = require("../utils/pause");
 
 async function internalSystemMenu(user,rl) {
@@ -44,7 +45,7 @@ async function internalSystemMenu(user,rl) {
                 break;
 
             case 5:
-                relatorysMenu();
+                reportsMenu(user,rl,internalSystemMenu);
                 break;
 
             case 6:

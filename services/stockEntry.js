@@ -49,6 +49,12 @@ async function stockEntry(user,rl,inventoryMovementsMenu,internalSystemMenu) {
 
     const quantityToAdd = await rl.question(`\n🔢 - Informe quantas quantidades entraram: `)
 
+    if (isNaN(quantityToAdd) || quantityToAdd <=0) {
+        console.log("Quantidade inválida! 🚫");
+        await pause(rl);
+        return inventoryMovementsMenu(user,rl,internalSystemMenu);
+    }
+
     const sqlEditQuantity =
     `UPDATE products
      SET quantity = quantity + ?
