@@ -48,7 +48,7 @@ async function internalSystemMenu(user,rl) {
                 break;
 
             case 6:
-                myAccountMenu();
+                myAccountMenu(user,rl,internalSystemMenu);
                 break;
 
             case 0:
