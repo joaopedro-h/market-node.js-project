@@ -2,7 +2,6 @@ const productsMenu = require("./productsMenu");
 const categoriesMenu = require("./categoriesMenu");
 const suppliersMenu = require("./suppliersMenu");
 const inventoryMovementsMenu = require("./inventoryMovementsMenu");
-const relatorysMenu = require("./relatorysMenu");
 const myAccountMenu = require("./myAccountMenu");
 const reportsMenu = require("./reportsMenu");
 const pause = require("../utils/pause");

@@ -3,6 +3,9 @@ const lowStockProducts = require("../services/lowStockProducts");
 const movementHistory = require("../services/movementHistory");
 const outOfStockProducts = require("../services/outOfStockProducts");
 const productsByCategory = require("../services/productsByCategory");
+const inboundMovements = require("../services/inboundMovements");
+const outboundMovements = require("../services/outboundMovements");
+const totalInventoryValue = require("../services/totalInventoryValue");
 const pause = require("../utils/pause");
 
 async function reportsMenu(user,rl,internalSystemMenu) {
@@ -45,7 +48,19 @@ async function reportsMenu(user,rl,internalSystemMenu) {
             case 5:
                 productsByCategory(user,rl,reportsMenu,internalSystemMenu);
                 break;             
-        
+
+            case 6:
+                inboundMovements(user,rl,reportsMenu,internalSystemMenu);
+                break;
+
+            case 7:
+                outboundMovements(user,rl,reportsMenu,internalSystemMenu);
+                break;
+
+            case 8:
+                totalInventoryValue(user,rl,reportsMenu,internalSystemMenu);
+                break;
+
             case 0:
                 console.log("\nVoltando.. ↩️");
                 await pause(rl);

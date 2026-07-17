@@ -10,7 +10,8 @@ async function listCategories(user,rl,categoriesMenu,internalSystemMenu) {
     `SELECT 
      id,
      name
-    FROM categories;`
+    FROM categories
+    ORDER BY id ASC;`
 
     const [categories] = await connection.execute(sqlCategories);
 
