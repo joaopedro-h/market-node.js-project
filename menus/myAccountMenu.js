@@ -1,4 +1,5 @@
 const editUserName = require("../services/editUserName");
+const editUserEmail = require("../services/editUserEmail");
 const pause = require("../utils/pause");
 
 async function myAccountMenu(user,rl,internalSystemMenu) {
@@ -22,6 +23,10 @@ async function myAccountMenu(user,rl,internalSystemMenu) {
 
             case 1:
                 editUserName(user,rl,myAccountMenu,internalSystemMenu);
+                break;
+
+            case 2:
+                editUserEmail(user,rl,myAccountMenu,internalSystemMenu);
                 break;
             
             case 0:
