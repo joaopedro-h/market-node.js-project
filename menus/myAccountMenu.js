@@ -1,6 +1,7 @@
 const editUserName = require("../services/editUserName");
 const editUserEmail = require("../services/editUserEmail");
 const editUserPassword = require("../services/editUserPassword");
+const deactivateAccount = require("../services/deactivateAccount");
 const pause = require("../utils/pause");
 
 async function myAccountMenu(user,rl,internalSystemMenu) {
@@ -15,7 +16,7 @@ async function myAccountMenu(user,rl,internalSystemMenu) {
     console.log("1. Alterar nome 🪪");
     console.log("2. Alterar email 📩");
     console.log("3. Alterar senha 🔑");
-    console.log("4. Excluir conta 🗑️");
+    console.log("4. Desativar conta 🗑️");
     console.log("5. Voltar ↩️");
 
     let option = Number(await rl.question("\n📌 - Selecione a opção que deseja: "));
@@ -34,6 +35,9 @@ async function myAccountMenu(user,rl,internalSystemMenu) {
                 editUserPassword(user,rl,myAccountMenu,internalSystemMenu);
                 break;
 
+            case 4:
+                deactivateAccount(user,rl,myAccountMenu,internalSystemMenu);
+                break;
 
             case 0:
                 console.log("\nVoltando.. ↩️");

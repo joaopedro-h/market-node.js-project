@@ -8,29 +8,36 @@ async function login(rl,mainMenu) {
     
     console.clear();
     console.log("LOGIN 💾");
-    
-    const email= await rl.question(`\n📩 - Insira o seu email: `);
 
-    const password= await rl.question(`\n🔑 - Insira sua senha: `);
+    const email= await rl.question(`\n📩 - Insira o seu email: `);
 
     const sqlLogin =
     `SELECT 
      id,
      user_name,
      email,
-     password
+     password,
+     active
     FROM users
     WHERE email = ?;`
 
     const [result] = await connection.execute(sqlLogin,[email]);
 
     if (result.length === 0) {  /* Verifica se existe algum usuário cadastrado com o email informado. */
-        console.log("\nNenhum usuário cadastrado! ❌");
+        console.log("\nUsuário não encontrado! ❌");
         await pause(rl);
         return mainMenu(rl);           
     }
 
     const user = result[0];
+
+    if (user.active === 0) {
+        console.log("\nConta desativada! ❌");
+        await pause(rl);
+        return mainMenu(rl);   
+    }
+
+    const password= await rl.question(`\n🔑 - Insira sua senha: `);
 
     const decryptedPassword = await decryptPassword(password,user);
 
