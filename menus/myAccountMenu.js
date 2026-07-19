@@ -1,5 +1,6 @@
 const editUserName = require("../services/editUserName");
 const editUserEmail = require("../services/editUserEmail");
+const editUserPassword = require("../services/editUserPassword");
 const pause = require("../utils/pause");
 
 async function myAccountMenu(user,rl,internalSystemMenu) {
@@ -29,6 +30,11 @@ async function myAccountMenu(user,rl,internalSystemMenu) {
                 editUserEmail(user,rl,myAccountMenu,internalSystemMenu);
                 break;
             
+            case 3:
+                editUserPassword(user,rl,myAccountMenu,internalSystemMenu);
+                break;
+
+
             case 0:
                 console.log("\nVoltando.. ↩️");
                 await pause(rl);

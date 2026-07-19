@@ -44,7 +44,7 @@ async function login(rl,mainMenu) {
         
     }else {
 
-        console.log("Senha incorreta! ");
+        console.log("\nSenha incorreta! 🚫");
         
     }
 
