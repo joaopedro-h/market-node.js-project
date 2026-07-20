@@ -8,6 +8,12 @@ async function editUserName(user,rl,myAccountMenu,internalSystemMenu) {
 
     const newName = await rl.question(`🪪 - Informe o novo nome de usuário: `);
 
+    if (newName === user.user_name) {
+        console.log("\nEsse já é o seu nome atual! 🚫");
+        await pause(rl);
+        return myAccountMenu(user, rl, internalSystemMenu);
+    }
+
     const sqlEditName =
     `UPDATE users
      SET user_name = ?
@@ -19,6 +25,7 @@ async function editUserName(user,rl,myAccountMenu,internalSystemMenu) {
     ]
 
     await connection.execute(sqlEditName,valuesName);
+    user.user_name = newName;
 
     console.log("\nNome alterado com sucesso! ✅");
 

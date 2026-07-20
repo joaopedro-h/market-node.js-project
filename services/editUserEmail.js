@@ -9,10 +9,16 @@ async function editUserName(user,rl,myAccountMenu,internalSystemMenu) {
 
     const newEmail = await rl.question(`📩 - Informe o novo email de usuário: `);
 
+    if (newEmail === user.email) {
+        console.log("\nEsse já é o seu email atual! 🚫");
+        await pause(rl);
+        return myAccountMenu(user, rl, internalSystemMenu);
+    }
+
     const emailAlreadyExists = await validateEmailUser(newEmail);
 
     if (emailAlreadyExists) {
-        console.log("\nEmail já em uso! 🚫");
+        console.log("\nEmail já em uso por outro usuário! 🚫");
         await pause(rl);
         return myAccountMenu(user,rl,internalSystemMenu);
     }
@@ -28,6 +34,7 @@ async function editUserName(user,rl,myAccountMenu,internalSystemMenu) {
     ]
 
     await connection.execute(sqlEditEmail,valuesEmail);
+    user.email = newEmail;
 
     console.log("\nEmail alterado com sucesso! ✅");
 
