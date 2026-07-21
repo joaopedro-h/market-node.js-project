@@ -8,7 +8,7 @@ async function searchProduct(user,rl,productsMenu,internalSystemMenu) {
     console.log("📦 ============ BUSCAR PRODUTO ============ 📦\n");
 
     const searchedProduct = await rl.question(`🔍 - Digite o nome do produto: `);
-
+    
     const sqlProducts =
     `SELECT 
      p.id,
@@ -26,9 +26,9 @@ async function searchProduct(user,rl,productsMenu,internalSystemMenu) {
      JOIN suppliers s
      ON p.supplier_id  = s.id
 
-    WHERE p.name = ?;`
+    WHERE p.name LIKE ? AND p.active = 1;`
 
-    const [productResult] = await connection.execute(sqlProducts,[searchedProduct]);
+    const [productResult] = await connection.execute(sqlProducts,[`%${searchedProduct}%`]);
 
     if (productResult.length === 0) {
         console.log("\nNenhum produto encontrado! 🚫");
@@ -37,10 +37,11 @@ async function searchProduct(user,rl,productsMenu,internalSystemMenu) {
     }
 
     await time();
-    const product = productResult[0];
+    console.log("Produto(s) encontrado(s)! ✅\n");
 
-    console.log("Produto encontrado! ✅\n");
-    console.log(`🆔 : ${product.id}\n🪪  - Nome: ${product.product_name}\n💰 - Preço: ${product.price}\n🔢 - Quantidade: ${product.quantity}\n🏷️  - Categoria: ${product.category_name}\n🚚 - Fornecedor: ${product.company_name}`);
+    for (const product of productResult) {
+        console.log(`🆔 : ${product.id}\n🪪  - Nome: ${product.product_name}\n💰 - Preço: ${product.price}\n🔢 - Quantidade: ${product.quantity}\n🏷️  - Categoria: ${product.category_name}\n🚚 - Fornecedor: ${product.company_name}\n`);
+    }
     
     await pause(rl);
     return productsMenu(user,rl,internalSystemMenu);
