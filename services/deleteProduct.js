@@ -22,7 +22,8 @@ async function deleteProduct(user,rl,productsMenu,internalSystemMenu) {
      ON p.category_id  = c.id
 
      JOIN suppliers s
-    ON p.supplier_id  = s.id;`
+     ON p.supplier_id  = s.id
+    WHERE p.active = 1;`
 
     const [products] = await connection.execute(sqlProducts);
 
@@ -47,7 +48,8 @@ async function deleteProduct(user,rl,productsMenu,internalSystemMenu) {
     }
 
     const sqlDeleteProduct =
-    `DELETE FROM products
+    `UPDATE products
+     SET active = 0
     WHERE id = ?;`
 
     await connection.execute(sqlDeleteProduct,[selectProduct]);

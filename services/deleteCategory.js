@@ -11,7 +11,8 @@ async function deleteCategory(user,rl,categoriesMenu,internalSystemMenu) {
     `SELECT 
      id,
      name
-    FROM categories;`
+     FROM categories
+    WHERE active = 1;`
 
     const [categories] = await connection.execute(sqlCategories);
 
@@ -36,7 +37,8 @@ async function deleteCategory(user,rl,categoriesMenu,internalSystemMenu) {
     }
 
     const sqlDeleteCategory =
-    `DELETE FROM categories
+    `UPDATE categories
+     SET active = 0
     WHERE id = ?;`
 
     await connection.execute(sqlDeleteCategory,[selectCategory]);
@@ -48,7 +50,7 @@ async function deleteCategory(user,rl,categoriesMenu,internalSystemMenu) {
     console.log("📦 ============ CATEGORIAS ATUALIZADAS ============ 📦\n");
 
     for (const category of updatedCategories) {
-    console.log(`🆔 : ${category.id}\n🪪  - Nome: ${category.name}`);
+    console.log(`🆔 : ${category.id}\n🪪  - Nome: ${category.name}\n`);
     }
 
     await pause(rl);

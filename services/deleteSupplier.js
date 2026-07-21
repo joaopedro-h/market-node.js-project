@@ -13,7 +13,8 @@ async function deleteSupplier(user,rl,suppliersMenu,internalSystemMenu) {
      company_name,
      email,
      phone
-    FROM suppliers;`
+    FROM suppliers
+    WHERE active = 1;`
 
     const [suppliers] = await connection.execute(sqlSuppliers);
 
@@ -38,7 +39,8 @@ async function deleteSupplier(user,rl,suppliersMenu,internalSystemMenu) {
     }
 
     const sqlDeleteSupplier =
-    `DELETE FROM suppliers
+    `UPDATE suppliers
+     SET active = 0
     WHERE id = ?;`
 
     await connection.execute(sqlDeleteSupplier,[selectSupplier]);
