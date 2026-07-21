@@ -61,7 +61,7 @@ async function deleteProduct(user,rl,productsMenu,internalSystemMenu) {
     console.log("📦 ============ PRODUTOS ATUALIZADOS ============ 📦\n");
 
     for (const product of updatedProducts) {
-        console.log(`🆔 : ${product.id}\n🪪  - Nome: ${product.company_name}\n📩 - Email: ${product.email}\n📞 - Telefone: ${product.phone}\n`);
+        console.log(`🆔 : ${product.id}\n🪪  - Nome: ${product.product_name}\n💰 - Preço: ${product.price}\n🔢 - Quantidade: ${product.quantity}\n🏷️  - Categoria: ${product.category_name}\n🚚 - Fornecedor: ${product.company_name}\n`);
     }
 
     await pause(rl);
