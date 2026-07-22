@@ -10,7 +10,8 @@ async function editProductCategory(user,rl,productsMenu,internalSystemMenu,produ
     `SELECT 
      id,
      name
-    FROM categories;`
+     FROM categories
+    WHERE active = 1;`
 
     const [categories] = await connection.execute(sqlCategories);
 

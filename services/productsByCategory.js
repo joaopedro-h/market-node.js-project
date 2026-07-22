@@ -10,7 +10,8 @@ async function productsByCategory(user,rl,reportsMenu,internalSystemMenu) {
     `SELECT 
      id,
      name
-    FROM categories
+     FROM categories
+     WHERE active = 1
     ORDER BY id ASC;`
 
     const [categories] = await connection.execute(sqlCategories);
@@ -48,7 +49,7 @@ async function productsByCategory(user,rl,reportsMenu,internalSystemMenu) {
      JOIN categories c
      ON p.category_id = c.id
  
-    WHERE c.id = ?`
+    WHERE c.id = ? AND p.active = 1;`
 
     const [result] = await connection.execute(sqlProducts,[idCategory]);
 

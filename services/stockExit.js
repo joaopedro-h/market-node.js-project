@@ -23,7 +23,9 @@ async function stockEntry(user,rl,inventoryMovementsMenu,internalSystemMenu) {
      ON p.category_id  = c.id
 
      JOIN suppliers s
-    ON p.supplier_id  = s.id;`
+     ON p.supplier_id  = s.id
+    
+    WHERE p.active = 1;`
 
     const [products] = await connection.execute(sqlProducts);
 
@@ -50,7 +52,7 @@ async function stockEntry(user,rl,inventoryMovementsMenu,internalSystemMenu) {
     const quantityToRemove  = await rl.question(`\n🔢 - Informe quantas quantidades saíram: `)
 
     if (isNaN(quantityToRemove) || quantityToRemove <=0) {
-        console.log("Quantidade inválida! 🚫");
+        console.log("\nQuantidade inválida! 🚫");
         await pause(rl);
         return inventoryMovementsMenu(user,rl,internalSystemMenu);
     }
@@ -86,7 +88,7 @@ async function stockEntry(user,rl,inventoryMovementsMenu,internalSystemMenu) {
 
     } catch (error) {
         
-        console.log("Erro na movimentação de estoque! 🚫");
+        console.log("\nErro na movimentação de estoque! 🚫");
         await conn.rollback();
         await pause(rl);
         return inventoryMovementsMenu(user,rl,internalSystemMenu);

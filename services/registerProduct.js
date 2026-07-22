@@ -13,7 +13,8 @@ async function registerProduct(user,rl,productsMenu,internalSystemMenu) {
     `SELECT 
      id,
      name
-    FROM categories;`
+     FROM categories
+    WHERE active = 1;`
 
     const sqlSuppliers =
     `SELECT 
@@ -21,7 +22,8 @@ async function registerProduct(user,rl,productsMenu,internalSystemMenu) {
      company_name,
      email,
      phone
-    FROM suppliers;`
+     FROM suppliers
+    WHERE active = 1;`
 
     const [categories] = await connection.execute(sqlCategories);
 

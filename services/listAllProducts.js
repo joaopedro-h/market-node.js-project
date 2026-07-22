@@ -21,7 +21,8 @@ async function listAllProducts(user,rl,reportsMenu,internalSystemMenu) {
      ON p.category_id  = c.id
 
      JOIN suppliers s
-    ON p.supplier_id  = s.id;`
+     ON p.supplier_id  = s.id
+    WHERE p.active = 1;`
 
     const [products] = await connection.execute(sqlProducts);
 

@@ -22,7 +22,7 @@ async function lowStockProducts(user,rl,reportsMenu,internalSystemMenu) {
 
      JOIN suppliers s
      ON p.supplier_id  = s.id
-    WHERE quantity <= 10;`
+    WHERE quantity <= 10 AND p.active = 1;`
 
     const [products] = await connection.execute(sqlProducts);
 

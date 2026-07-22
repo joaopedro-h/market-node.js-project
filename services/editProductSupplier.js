@@ -12,7 +12,8 @@ async function editProductSupplier(user,rl,productsMenu,internalSystemMenu,produ
      company_name,
      email,
      phone
-    FROM suppliers;`
+     FROM suppliers
+    WHERE active = 1;`
 
     const [suppliers] = await connection.execute(sqlSuppliers);
 

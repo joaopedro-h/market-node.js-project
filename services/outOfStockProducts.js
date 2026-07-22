@@ -22,7 +22,7 @@ async function outOfStockProducts(user,rl,reportsMenu,internalSystemMenu) {
 
      JOIN suppliers s
      ON p.supplier_id  = s.id
-    WHERE quantity = 0;`
+    WHERE quantity = 0 AND p.active = 1;`
 
     const [products] = await connection.execute(sqlProducts);
 
