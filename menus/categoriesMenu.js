@@ -15,9 +15,7 @@ async function categoriesMenu(user,rl,internalSystemMenu) {
     console.log("4. Excluir categoria 🗑️");
     console.log("0. Voltar ↩️");
     
-    let option = await rl.question("\n📌 - Selecione a opção que deseja: ");
-
-        option = Number(option);
+    let option = Number(await rl.question("\n📌 - Selecione a opção que deseja: "));
 
         switch (option) {
 

@@ -23,9 +23,7 @@ async function reportsMenu(user,rl,internalSystemMenu) {
     console.log("8. Valor total do estoque 💰");
     console.log("0. Voltar ↩️");
     
-    let option = await rl.question("\n📌 - Selecione a opção que deseja: ");
-    
-        option = Number(option);
+    let option = Number(await rl.question("\n📌 - Selecione a opção que deseja: "));
 
         switch (option) {
 

@@ -13,9 +13,7 @@ async function mainMenu(rl) {
     console.log("2. Fazer login 💾");
     console.log("0. Sair ❌");
 
-    let option = await rl.question("\n📌 - Selecione a opção que deseja: ");
-
-        option = Number(option);
+    let option = Number(await rl.question("\n📌 - Selecione a opção que deseja: "));
 
         switch (option) {
 

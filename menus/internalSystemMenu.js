@@ -21,10 +21,8 @@ async function internalSystemMenu(user,rl) {
     console.log("6. Minha conta 👤");
     console.log("0. Sair ❌");
     
-    let option = await rl.question("\n📌 - Selecione a opção que deseja: ");
+    let option = Number(await rl.question("\n📌 - Selecione a opção que deseja: "));
     
-        option = Number(option);
-
         switch (option) {
 
             case 1:

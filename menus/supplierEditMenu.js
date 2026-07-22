@@ -45,9 +45,7 @@ async function supplierEditMenu(user,rl,suppliersMenu,internalSystemMenu) {
     console.log("3. Telefone 📞");
     console.log("0. Voltar ↩️");
     
-    let option = await rl.question("\n📌 - Selecione a edição que deseja: ");
-    
-        option = Number(option);
+    let option = Number(await rl.question("\n📌 - Selecione a edição que deseja: "));
 
         switch (option) {
 
