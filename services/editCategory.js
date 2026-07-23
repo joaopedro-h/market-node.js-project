@@ -35,7 +35,13 @@ async function editCategory(user,rl,categoriesMenu,internalSystemMenu) {
         return categoriesMenu(user,rl,internalSystemMenu);   
     }
 
-    const categoryUpdated = await rl.question("\n🏷️  - Informe o novo nome da categoria: ")
+    const categoryUpdated = await rl.question("\n🏷️  - Informe o novo nome da categoria: ");
+
+    if (!categoryUpdated.trim()) {
+        console.log("\nCampo inválido! 🚫");
+        await pause(rl);
+        return categoriesMenu(user,rl,internalSystemMenu); 
+    }
 
     const sqlEditCategory =
     `UPDATE categories

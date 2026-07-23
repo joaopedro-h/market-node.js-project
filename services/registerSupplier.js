@@ -10,27 +10,45 @@ async function registerSupplier(user,rl,suppliersMenu,internalSystemMenu) {
 
     const supplierName = await rl.question("🪪  - Insira o nome: ");
 
-        const email = await rl.question ("\n📩 - Insira o email: ");
+        if (!supplierName.trim()) {
+            console.log("\nCampo inválido! 🚫");
+            await pause(rl);
+            return registerSupplier(user,rl,suppliersMenu,internalSystemMenu);
+        }
 
-            const emailAlreadyExists = await validateEmailSupplier(email);
+    const email = await rl.question ("\n📩 - Insira o email: ");
 
-            if (emailAlreadyExists) {
-                console.log("\nEmail já em uso! 🚫");
-                await pause(rl);
-                return registerSupplier(user,rl,suppliersMenu,internalSystemMenu);
-            }
+        if (!email.trim()) {
+            console.log("\nCampo inválido! 🚫");
+            await pause(rl);
+            return registerSupplier(user,rl,suppliersMenu,internalSystemMenu);
+        }
 
-            const phone = await rl.question("\n📞 - Insira o telefone: ");
+    const emailAlreadyExists = await validateEmailSupplier(email);
 
-                const supplier = new Supplier(
-                    supplierName,
-                    email,
-                    phone
-                );
+        if (emailAlreadyExists) {
+            console.log("\nEmail já em uso! 🚫");
+            await pause(rl);
+            return registerSupplier(user,rl,suppliersMenu,internalSystemMenu);
+        }
 
-                await saveSupplier(supplier);
-                await pause(rl);
-                return suppliersMenu(user,rl,internalSystemMenu);
+    const phone = await rl.question("\n📞 - Insira o telefone: ");
+
+        if (isNaN(phone) || phone <= 0) {
+            console.log("\nTelefone inválido! 🚫"); 
+            await pause(rl);
+            return registerSupplier(user,rl,suppliersMenu,internalSystemMenu);                              
+        }
+
+    const supplier = new Supplier(
+        supplierName,
+        email,
+        phone
+    );
+
+        await saveSupplier(supplier);
+        await pause(rl);
+        return suppliersMenu(user,rl,internalSystemMenu);
 }
 
 module.exports = registerSupplier;

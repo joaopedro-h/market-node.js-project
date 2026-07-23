@@ -8,10 +8,16 @@ async function editUserName(user,rl,myAccountMenu,internalSystemMenu) {
 
     const newName = await rl.question(`🪪 - Informe o novo nome de usuário: `);
 
+    if (!newName.trim()) {
+        console.log("\nCampo inválido! 🚫");
+        await pause(rl);
+        return myAccountMenu(user,rl,internalSystemMenu);
+    }
+
     if (newName === user.user_name) {
         console.log("\nEsse já é o seu nome atual! 🚫");
         await pause(rl);
-        return myAccountMenu(user, rl, internalSystemMenu);
+        return myAccountMenu(user,rl,internalSystemMenu);
     }
 
     const sqlEditName =

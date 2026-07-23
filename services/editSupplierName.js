@@ -7,6 +7,12 @@ async function editSupplierName(user,rl,suppliersMenu,internalSystemMenu,supplie
     console.log("🚚 ============ EDITAR NOME ============ 🚚\n");
 
     const newName = await rl.question(`🪪 - Informe o novo nome do fornecedor: `);
+
+    if (!newName.trim()) {
+        console.log("\nCampo inválido! 🚫");
+        await pause(rl);
+        return suppliersMenu(user,rl,internalSystemMenu);
+    }
     
     const sqlEditName =
     `UPDATE suppliers

@@ -9,12 +9,18 @@ async function editSupplierEmail(user,rl,suppliersMenu,internalSystemMenu,suppli
 
     const newEmail = await rl.question(`📩 - Informe o novo email do fornecedor: `);
 
+    if (!newEmail.trim()) {
+        console.log("\nCampo inválido! 🚫");
+        await pause(rl);
+        return suppliersMenu(user,rl,internalSystemMenu);
+    }
+
     const emailAlreadyExists = await validateEmailSupplier(newEmail);
 
     if (emailAlreadyExists) {
         console.log("\nEmail já em uso! 🚫");
         await pause(rl);
-        return suppliersMenu(rl);
+        return suppliersMenu(user,rl,internalSystemMenu);
     }
 
     const sqlEditEmail =
@@ -32,7 +38,7 @@ async function editSupplierEmail(user,rl,suppliersMenu,internalSystemMenu,suppli
     console.log("\nEmail alterado com sucesso! ✅");
 
     await pause(rl);
-    return suppliersMenu(user,rl,internalSystemMenu);;
+    return suppliersMenu(user,rl,internalSystemMenu);
 
 }
 

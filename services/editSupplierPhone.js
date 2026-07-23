@@ -7,6 +7,12 @@ async function editSupplierPhone(user,rl,suppliersMenu,internalSystemMenu,suppli
     console.log("🚚 ============ EDITAR TELEFONE ============ 🚚\n");
 
     const newPhone = await rl.question(`📞 - Informe o novo telefone do fornecedor: `);
+
+    if (isNaN(newPhone) || newPhone <= 0) {
+        console.log("\nTelefone inválido! 🚫"); 
+        await pause(rl);
+        return suppliersMenu(user,rl,internalSystemMenu);                             
+    }
     
     const sqlEditPhone =
     `UPDATE suppliers

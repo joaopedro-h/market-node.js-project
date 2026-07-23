@@ -7,6 +7,12 @@ async function editProductName(user,rl,productsMenu,internalSystemMenu,productId
     console.log("📦 ============ EDITAR NOME ============ 📦\n");
 
     const newName = await rl.question(`🪪 - Informe o novo nome do produto: `);
+
+    if (!newName.trim()) {
+        console.log("\nCampo inválido! 🚫");
+        await pause(rl);
+        return productsMenu(user,rl,internalSystemMenu);
+    }
     
     const sqlEditName =
     `UPDATE products

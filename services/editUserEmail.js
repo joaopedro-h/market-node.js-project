@@ -9,6 +9,12 @@ async function editUserName(user,rl,myAccountMenu,internalSystemMenu) {
 
     const newEmail = await rl.question(`📩 - Informe o novo email de usuário: `);
 
+    if (!newEmail.trim()) {
+        console.log("\nCampo inválido! 🚫");
+        await pause(rl);
+        return myAccountMenu(user,rl,internalSystemMenu);
+    }
+
     if (newEmail === user.email) {
         console.log("\nEsse já é o seu email atual! 🚫");
         await pause(rl);

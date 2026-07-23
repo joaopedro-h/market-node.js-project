@@ -43,21 +43,27 @@ async function registerProduct(user,rl,productsMenu,internalSystemMenu) {
 
     const productName = await rl.question(`🪪  - Insira o nome do produto: `);
 
-        const productPrice = Number(await rl.question(`\n💰 - Insira o preço do produto: `));
+        if (!productName.trim()) {
+            console.log("\nCampo inválido! 🚫");
+            await pause(rl);
+            return registerProduct(user,rl,productsMenu,internalSystemMenu); 
+        }
+
+    const productPrice = Number(await rl.question(`\n💰 - Insira o preço do produto: `));
 
         if (isNaN(productPrice) || productPrice <= 0) {
             console.log("\nValor inválido! 🚫"); 
             await pause(rl);
-            return registerProduct(user,rl,productsMenu,internalSystemMenu);                               
+            return registerProduct(user,rl,productsMenu,internalSystemMenu);                                       
         }
 
-            const productQuantity = Number(await rl.question(`\n🔢 - Insira a quantidade do produto: `));
+    const productQuantity = Number(await rl.question(`\n🔢 - Insira a quantidade do produto: `));
 
-            if (isNaN(productQuantity) || productQuantity <= 0) {
-                console.log("\nQuantidade inválida! 🚫"); 
-                await pause(rl);
-                return registerProduct(user,rl,productsMenu,internalSystemMenu);                               
-            }
+        if (isNaN(productQuantity) || productQuantity <= 0) {
+            console.log("\nQuantidade inválida! 🚫"); 
+            await pause(rl);
+            return registerProduct(user,rl,productsMenu,internalSystemMenu);                               
+        }
 
     await time();
 

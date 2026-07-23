@@ -9,6 +9,12 @@ async function registerCategory(user,rl,categoriesMenu,internalSystemMenu) {
 
     const categoryName = await rl.question(`🪪  - Insira o nome da categoria: `);
 
+        if (!categoryName.trim()) {
+            console.log("\nCampo inválido! 🚫");
+            await pause(rl);
+            return categoriesMenu(user,rl,internalSystemMenu);
+        }
+
     const category = new Category(
         categoryName
     );

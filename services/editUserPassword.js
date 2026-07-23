@@ -16,10 +16,15 @@ async function editUserPassword(user,rl,myAccountMenu,internalSystemMenu) {
         console.log("\nSenha incorreta! 🚫");
         await pause(rl);
         return myAccountMenu(user,rl,internalSystemMenu);
-
     }
 
     const newPassword = await rl.question(`\n🔑 - Digite a senha nova: `);
+
+        if (!newPassword.trim()) {
+            console.log("\nCampo inválido! 🚫");
+            await pause(rl);
+            return myAccountMenu(user,rl,internalSystemMenu);
+        }
 
     const passwordConfirmed = await rl.question(`\n🔑 - Confirme a senha nova: `);
 

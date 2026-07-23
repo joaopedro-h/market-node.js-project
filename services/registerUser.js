@@ -11,37 +11,55 @@ async function registerUser(rl,mainMenu) {
 
     const userName = await rl.question("🪪  - Insira o seu nome:");
 
-        const email = await rl.question ("\n📩 - Insira o seu email: ");
+        if (!userName.trim()) {
+            console.log("\nCampo inválido! 🚫");
+            await pause(rl);
+            return registerUser(rl);
+        }
+
+    const email = await rl.question ("\n📩 - Insira o seu email: ");
+
+        if (!email.trim()) {
+            console.log("\nCampo inválido! 🚫");
+            await pause(rl);
+            return registerUser(rl);
+        }
             
-            const emailAlreadyExists = await validateEmailUser(email);
+    const emailAlreadyExists = await validateEmailUser(email);
 
-            if (emailAlreadyExists) {
-                console.log("\nEmail já em uso! 🚫");
-                await pause(rl);
-                return registerUser(rl);
-            }
+        if (emailAlreadyExists) {
+            console.log("\nEmail já em uso! 🚫");
+            await pause(rl);
+            return registerUser(rl);
+        }
 
-            const password = await rl.question("\n🔑 - Insira sua senha: ");
+    const password = await rl.question("\n🔑 - Insira sua senha: ");
 
-                const passwordConfirmed = await rl.question(`\n🔑 - Confirme sua senha: `)
+        if (!password.trim()) {
+            console.log("\nCampo inválido! 🚫");
+            await pause(rl);
+            return registerUser(rl);
+        }
 
-                if (password != passwordConfirmed) {
-                    console.log("\nSenha incorreta! 🚫");
-                    await pause(rl);
-                    return registerUser(rl);                    
-                }
+    const passwordConfirmed = await rl.question(`\n🔑 - Confirme sua senha: `)
 
-                const encryptedPassword = await encryptPassword(password);
+        if (password != passwordConfirmed) {
+            console.log("\nSenha incorreta! 🚫");
+            await pause(rl);
+            return registerUser(rl);                    
+        }
 
-                const user = new User(
-                    userName,
-                    email,
-                    encryptedPassword
-                );
+    const encryptedPassword = await encryptPassword(password);
 
-                await saveUser(user);
-                await pause(rl);
-                return mainMenu(rl);
+    const user = new User(
+        userName,
+        email,
+        encryptedPassword
+    );
+
+        await saveUser(user);
+        await pause(rl);
+        return mainMenu(rl);
 
 }
 

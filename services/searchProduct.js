@@ -8,6 +8,12 @@ async function searchProduct(user,rl,productsMenu,internalSystemMenu) {
     console.log("📦 ============ BUSCAR PRODUTO ============ 📦\n");
 
     const searchedProduct = await rl.question(`🔍 - Digite o nome do produto: `);
+
+        if (!searchedProduct.trim()) {
+            console.log("\nCampo inválido! 🚫");
+            await pause(rl);
+            return productsMenu(user,rl,internalSystemMenu);
+        }
     
     const sqlProducts =
     `SELECT 
