@@ -17,37 +17,37 @@ async function productsMenu(user,rl,internalSystemMenu) {
     console.log("5. Excluir produto 🗑️");
     console.log("0. Voltar ↩️");
     
-    let option = Number(await rl.question("\n📌 - Selecione a opção que deseja: "));
+    let option = Number(await rl.question("\n📌 - Selecione a opção que deseja: ")); /* "option" recebe a opção escolhida pelo usuário e converte a string em número. */
 
         switch (option) {
 
             case 1:
-                registerProduct(user,rl,productsMenu,internalSystemMenu);
+                registerProduct(user,rl,productsMenu,internalSystemMenu); /* Redireciona o usuário para a função de cadastro de produtos. */
                 break;
             
             case 2:
-                listProducts(user,rl,productsMenu,internalSystemMenu);
+                listProducts(user,rl,productsMenu,internalSystemMenu); /* Redireciona o usuário para a função de listagem de produtos. */
                 break;
 
             case 3:
-                searchProduct(user,rl,productsMenu,internalSystemMenu);
+                searchProduct(user,rl,productsMenu,internalSystemMenu); /* Redireciona o usuário para a função de busca de produtos. */
                 break;
 
             case 4:
-                productEditMenu(user,rl,productsMenu,internalSystemMenu);
+                productEditMenu(user,rl,productsMenu,internalSystemMenu); /* Redireciona o usuário para o menu de edição de produtos. */
                 break;
 
             case 5:
-                deleteProduct(user,rl,productsMenu,internalSystemMenu);
+                deleteProduct(user,rl,productsMenu,internalSystemMenu); /* Redireciona o usuário para a função de exclusão de produtos. */
                 break;
 
             case 0:
                 console.log("\nVoltando.. ↩️");
                 await pause(rl);
-                return internalSystemMenu(user,rl);
+                return internalSystemMenu(user,rl); /* Retorna o usuário para o menu principal do sistema. */
 
             default:
-                console.log("\nOpção inválida! 🚫");
+                console.log("\nOpção inválida! 🚫"); /* Verifica se a opção escolhida não existe no menu. */
                 await pause(rl);
                 return productsMenu(user,rl,internalSystemMenu);
         }
