@@ -3,22 +3,22 @@ const time = require("../utils/time");
 
 async function saveUser(user) {
     
-    await time();
+    await time(); /* Aguarda alguns segundos antes de continuar a execução. */
     
-    const sqlSaveUser =
+    const sqlSaveUser = /* Cria a query para cadastrar um novo usuário. */
     `INSERT INTO users (user_name,email,password)
     VALUES (?,?,?)`;
 
-    const valuesUser = [
+    const valuesUser = [ /* Valores que substituirão os "?" da query, recebendo as informações do objeto "user". */
         user.name,
         user.email,
         user.password
     ]
 
-    const [result] = await connection.execute(sqlSaveUser,valuesUser);
+    const [result] = await connection.execute(sqlSaveUser,valuesUser); /* Executa e armazena os rows em "result", ignorando os fields retornados pelo MySQL. */
 
     console.log("Cadastro realizado com sucesso! ✅");
-    console.log("🆔: ", result.insertId);
+    console.log("🆔: ", result.insertId); /* Exibe o ID gerado automaticamente pelo banco de dados. */
     
 }
 
