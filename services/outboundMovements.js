@@ -6,7 +6,7 @@ async function outboundMovements(user,rl,reportsMenu,internalSystemMenu) {
     console.clear();
     console.log("📉 ============ MOVIMENTAÇÕES DE SAÍDA ============ 📉\n");
 
-    const sqlOutboundMovements =
+    const sqlOutboundMovements = /* Cria a query para listar todas as movimentações de saída do estoque. */
     `SELECT 
 	 s.id AS "ID",
      p.name "Nome",
@@ -24,18 +24,18 @@ async function outboundMovements(user,rl,reportsMenu,internalSystemMenu) {
 
     WHERE type = "SAÍDA";`
 
-    const [result] = await connection.execute(sqlOutboundMovements);
+    const [result] = await connection.execute(sqlOutboundMovements); /* Executa e armazena os rows em "result", ignorando os fields retornados pelo MySQL. */
 
-    if (result.length === 0) {
+    if (result.length === 0) { /* Verifica se existe pelo menos uma movimentação de saída cadastrada. */
         console.log("Nenhuma movimentação de entrada encontrada! 🚫");
         await pause(rl);
         return reportsMenu(user,rl,internalSystemMenu);
     }
 
-    console.table(result);
+    console.table(result); /* Exibe as movimentações de saída em formato de tabela. */
 
     await pause(rl);
-    return reportsMenu(user,rl,internalSystemMenu);  
+    return reportsMenu(user,rl,internalSystemMenu);  /* Retorna o usuário para o menu de relatórios. */
 
 }
 

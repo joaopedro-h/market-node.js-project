@@ -9,13 +9,13 @@ async function searchProduct(user,rl,productsMenu,internalSystemMenu) {
 
     const searchedProduct = await rl.question(`🔍 - Digite o nome do produto: `);
 
-        if (!searchedProduct.trim()) {
+        if (!searchedProduct.trim()) { /* Verifica se o nome informado não está vazio. */
             console.log("\nCampo inválido! 🚫");
             await pause(rl);
             return productsMenu(user,rl,internalSystemMenu);
         }
     
-    const sqlProducts =
+    const sqlProducts = /* Cria a query para buscar produtos pelo nome. */
     `SELECT 
      p.id,
      p.name AS product_name,
@@ -34,9 +34,9 @@ async function searchProduct(user,rl,productsMenu,internalSystemMenu) {
 
     WHERE p.name LIKE ? AND p.active = 1;`
 
-    const [productResult] = await connection.execute(sqlProducts,[`%${searchedProduct}%`]);
+    const [productResult] = await connection.execute(sqlProducts,[`%${searchedProduct}%`]); /* Executa a consulta utilizando o nome informado na busca. */
 
-    if (productResult.length === 0) {
+    if (productResult.length === 0) { /* Verifica se algum produto foi encontrado. */
         console.log("\nNenhum produto encontrado! 🚫");
         await pause(rl);
         return productsMenu(user,rl,internalSystemMenu);
@@ -45,12 +45,12 @@ async function searchProduct(user,rl,productsMenu,internalSystemMenu) {
     await time();
     console.log("Produto(s) encontrado(s)! ✅\n");
 
-    for (const product of productResult) {
+    for (const product of productResult) { /* Percorre todos os produtos encontrados e exibe suas informações. */
         console.log(`🆔 : ${product.id}\n🪪  - Nome: ${product.product_name}\n💰 - Preço: ${product.price}\n🔢 - Quantidade: ${product.quantity}\n🏷️  - Categoria: ${product.category_name}\n🚚 - Fornecedor: ${product.company_name}\n`);
     }
     
     await pause(rl);
-    return productsMenu(user,rl,internalSystemMenu);
+    return productsMenu(user,rl,internalSystemMenu); /* Retorna o usuário para o menu de produtos. */
 
 }
 

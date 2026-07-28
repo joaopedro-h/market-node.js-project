@@ -6,7 +6,7 @@ async function outOfStockProducts(user,rl,reportsMenu,internalSystemMenu) {
     console.clear();
     console.log("❌ ============ PRODUTOS SEM ESTOQUE ============ ❌\n");
 
-    const sqlProducts =
+    const sqlProducts = /* Cria a query para listar todos os produtos sem estoque. */
     `SELECT 
      p.id,
      p.name AS product_name,
@@ -24,20 +24,20 @@ async function outOfStockProducts(user,rl,reportsMenu,internalSystemMenu) {
      ON p.supplier_id  = s.id
     WHERE quantity = 0 AND p.active = 1;`
 
-    const [products] = await connection.execute(sqlProducts);
+    const [products] = await connection.execute(sqlProducts); /* Executa e armazena os rows em "products", ignorando os fields retornados pelo MySQL. */
 
-    if (products.length === 0) {
+    if (products.length === 0) { /* Verifica se existe pelo menos um produto sem estoque. */
         console.log("Nenhum produto sem estoque! 🚫");
         await pause(rl);
         return reportsMenu(user,rl,internalSystemMenu);
     }
 
-    for (const product of products) {
+    for (const product of products) { /* Percorre todos os produtos encontrados e exibe suas informações. */
         console.log(`🆔 : ${product.id}\n🪪  - Nome: ${product.product_name}\n💰 - Preço: ${product.price}\n🔢 - Quantidade: ${product.quantity}\n🏷️  - Categoria: ${product.category_name}\n🚚 - Fornecedor: ${product.company_name}\n`);
     }
 
     await pause(rl);
-    return reportsMenu(user,rl,internalSystemMenu);
+    return reportsMenu(user,rl,internalSystemMenu); /* Retorna o usuário para o menu de relatórios. */
 
 }
 

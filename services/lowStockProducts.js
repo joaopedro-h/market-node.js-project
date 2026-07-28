@@ -6,7 +6,7 @@ async function lowStockProducts(user,rl,reportsMenu,internalSystemMenu) {
     console.clear();
     console.log("⚠️ ============ PRODUTOS EM ESTOQUE BAIXO ============ ⚠️\n");
 
-    const sqlProducts =
+    const sqlProducts = /* Cria a query para listar todos os produtos ativos com estoque igual ou inferior a 10 unidades. */
     `SELECT 
      p.id,
      p.name AS product_name,
@@ -24,20 +24,20 @@ async function lowStockProducts(user,rl,reportsMenu,internalSystemMenu) {
      ON p.supplier_id  = s.id
     WHERE quantity <= 10 AND p.active = 1;`
 
-    const [products] = await connection.execute(sqlProducts);
+    const [products] = await connection.execute(sqlProducts); /* Executa e armazena os rows em "products", ignorando os fields retornados pelo MySQL. */
 
-    if (products.length === 0) {
+    if (products.length === 0) { /* Verifica se existe algum produto com estoque baixo. */
         console.log("Nenhum produto abaixo do estoque mínimo! 🚫");
         await pause(rl);
         return reportsMenu(user,rl,internalSystemMenu);
     }
 
-    for (const product of products) {
+    for (const product of products) { /* Percorre todos os produtos encontrados para exibi-los ao usuário. */
         console.log(`🆔 : ${product.id}\n🪪  - Nome: ${product.product_name}\n💰 - Preço: ${product.price}\n🔢 - Quantidade: ${product.quantity}\n🏷️  - Categoria: ${product.category_name}\n🚚 - Fornecedor: ${product.company_name}\n`);
     }
 
     await pause(rl);
-    return reportsMenu(user,rl,internalSystemMenu);
+    return reportsMenu(user,rl,internalSystemMenu); /* Retorna o usuário para o menu de relatórios. */
 
 }
 
