@@ -2,6 +2,7 @@ const registerCategory = require("../services/registerCategory");
 const listCategories = require("../services/listCategories");
 const editCategory = require("../services/editCategory");
 const deleteCategory = require("../services/deleteCategory");
+const reactivateCategory = require("../services/reactivateCategory");
 const pause = require("../utils/pause");
 
 async function categoriesMenu(user,rl,internalSystemMenu) {
@@ -13,6 +14,7 @@ async function categoriesMenu(user,rl,internalSystemMenu) {
     console.log("2. Listar categorias 📃");
     console.log("3. Editar categoria 📝");
     console.log("4. Excluir categoria 🗑️");
+    console.log("5. Reativar categoria");
     console.log("0. Voltar ↩️");
     
     let option = Number(await rl.question("\n📌 - Selecione a opção que deseja: ")); /* "option" recebe a opção escolhida pelo usuário e converte a string em número. */
@@ -33,6 +35,10 @@ async function categoriesMenu(user,rl,internalSystemMenu) {
 
             case 4:
                 deleteCategory(user,rl,categoriesMenu,internalSystemMenu); /* Redireciona o usuário para a função de exclusão de categorias. */
+                break;
+
+            case 5:
+                reactivateCategory(user,rl,categoriesMenu,internalSystemMenu); /* Redireciona o usuário para a função de reativação de categorias. */
                 break;
 
             case 0:

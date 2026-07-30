@@ -3,6 +3,7 @@ const listProducts = require("../services/listProducts");
 const searchProduct = require("../services//searchProduct");
 const productEditMenu = require("./productEditMenu");
 const deleteProduct = require("../services/deleteProduct");
+const reactivateProduct = require ("../services/reactivateProduct");
 const pause = require("../utils/pause");
 
 async function productsMenu(user,rl,internalSystemMenu) {
@@ -15,6 +16,7 @@ async function productsMenu(user,rl,internalSystemMenu) {
     console.log("3. Buscar produto 🔎");
     console.log("4. Editar produto 📝");
     console.log("5. Excluir produto 🗑️");
+    console.log("6. Reativar produto ");
     console.log("0. Voltar ↩️");
     
     let option = Number(await rl.question("\n📌 - Selecione a opção que deseja: ")); /* "option" recebe a opção escolhida pelo usuário e converte a string em número. */
@@ -39,6 +41,10 @@ async function productsMenu(user,rl,internalSystemMenu) {
 
             case 5:
                 deleteProduct(user,rl,productsMenu,internalSystemMenu); /* Redireciona o usuário para a função de exclusão de produtos. */
+                break;
+
+            case 6:
+                reactivateProduct(user,rl,productsMenu,internalSystemMenu); /* Redireciona o usuário para a função de reativação de produtos. */
                 break;
 
             case 0:
