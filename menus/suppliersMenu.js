@@ -3,6 +3,7 @@ const listSuppliers = require("../services/listSuppliers");
 const supplierEditMenu = require("./supplierEditMenu")
 const deleteSupplier = require("../services/deleteSupplier");
 const pause = require("../utils/pause");
+const reactiveSupplier = require("../services/reactiveSupplier");
 
 async function suppliersMenu(user,rl,internalSystemMenu) {
     
@@ -13,6 +14,7 @@ async function suppliersMenu(user,rl,internalSystemMenu) {
     console.log("2. Listar fornecedores 📃");
     console.log("3. Editar fornecedor 📝");
     console.log("4. Excluir fornecedor 🗑️");
+    console.log("5. Reativar fornecedor");
     console.log("0. Voltar ↩️");
     
     let option = Number(await rl.question("\n📌 - Selecione a opção que deseja: ")); /* "option" recebe a opção escolhida pelo usuário e converte a string em número. */
@@ -33,6 +35,10 @@ async function suppliersMenu(user,rl,internalSystemMenu) {
 
             case 4:
                 deleteSupplier(user,rl,suppliersMenu,internalSystemMenu); /* Redireciona o usuário para a função de exclusão de fornecedores. */
+                break;
+
+            case 5:
+                reactiveSupplier(user,rl,suppliersMenu,internalSystemMenu); /* Redireciona o usuário para a função de reativação de fornecedores. */
                 break;
 
             case 0:
