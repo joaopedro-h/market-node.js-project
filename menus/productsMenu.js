@@ -16,7 +16,7 @@ async function productsMenu(user,rl,internalSystemMenu) {
     console.log("3. Buscar produto 🔎");
     console.log("4. Editar produto 📝");
     console.log("5. Excluir produto 🗑️");
-    console.log("6. Reativar produto ");
+    console.log("6. Reativar produto ✅ ");
     console.log("0. Voltar ↩️");
     
     let option = Number(await rl.question("\n📌 - Selecione a opção que deseja: ")); /* "option" recebe a opção escolhida pelo usuário e converte a string em número. */

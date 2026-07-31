@@ -92,12 +92,13 @@ Projeto desenvolvido de forma autoral para fins de estudo e prática de desenvol
 # 📦 Menu de Produtos
 
 ```txt
-1. Cadastrar produto
-2. Listar produtos
-3. Buscar produto
-4. Editar produto
-5. Excluir produto
-0. Voltar
+1. Cadastrar produto 📦
+2. Listar produtos 📃
+3. Buscar produto 🔎
+4. Editar produto 📝
+5. Excluir produto 🗑️
+6. Reativar produto ✅
+0. Voltar ↩️
 ```
 
 ---
@@ -105,11 +106,12 @@ Projeto desenvolvido de forma autoral para fins de estudo e prática de desenvol
 # 🏷️ Menu de Categorias
 
 ```txt
-1. Cadastrar categoria
-2. Listar categorias
-3. Editar categoria
-4. Excluir categoria
-0. Voltar
+1. Cadastrar categoria ➕
+2. Listar categorias 📃
+3. Editar categoria 📝
+4. Excluir categoria 🗑️
+5. Reativar categoria ✅
+0. Voltar ↩️
 ```
 
 ---
@@ -117,11 +119,12 @@ Projeto desenvolvido de forma autoral para fins de estudo e prática de desenvol
 # 🚚 Menu de Fornecedores
 
 ```txt
-1. Cadastrar fornecedor
-2. Listar fornecedores
-3. Editar fornecedor
-4. Excluir fornecedor
-0. Voltar
+1. Cadastrar fornecedor ➕
+2. Listar fornecedores 📃
+3. Editar fornecedor 📝
+4. Excluir fornecedor 🗑️
+5. Reativar fornecedor ✅
+0. Voltar ↩️
 ```
 
 ---
@@ -129,10 +132,10 @@ Projeto desenvolvido de forma autoral para fins de estudo e prática de desenvol
 # 📋 Menu de Movimentações
 
 ```txt
-1. Entrada de produtos
-2. Saída de produtos
-3. Histórico de movimentações
-0. Voltar
+1. Entrada de produtos ➕
+2. Saída de produtos ➖
+3. Histórico de movimentações 📜
+0. Voltar ↩️
 ```
 
 ---
@@ -140,15 +143,15 @@ Projeto desenvolvido de forma autoral para fins de estudo e prática de desenvol
 # 📊 Menu de Relatórios
 
 ```txt
-1. Todos os produtos
-2. Produtos por categoria
-3. Produtos com estoque baixo
-4. Produtos sem estoque
-5. Movimentações de entrada
-6. Movimentações de saída
-7. Histórico completo
-8. Valor total do estoque
-0. Voltar
+1. Listar todos os produtos 📦
+2. Produtos com estoque baixo ⚠️
+3. Produtos sem estoque ❌
+4. Histórico de movimentações 📋
+5. Produtos por categoria 🏷️
+6. Movimentações de entrada 📈
+7. Movimentações de saída 📉
+8. Valor total do estoque 💰
+0. Voltar ↩️
 ```
 
 ---
@@ -156,11 +159,18 @@ Projeto desenvolvido de forma autoral para fins de estudo e prática de desenvol
 # 👤 Minha Conta
 
 ```txt
-1. Alterar nome
-2. Alterar email
-3. Alterar senha
-4. Desativar conta
-0. Voltar
+
+👤 ============ MINHA CONTA ============ 👤
+
+🆔 - ID: 1
+🪪 - Nome: Usuário
+📩 - Email: usuario@gmail.com
+
+1. Alterar nome 🪪
+2. Alterar email 📩
+3. Alterar senha 🔑
+4. Desativar conta 🗑️
+0. Voltar ↩️
 ```
 
 ---
@@ -620,6 +630,9 @@ market-nodejs-project/
 │   ├── outboundMovements.js
 │   ├── outOfStockProducts.js
 │   ├── productsByCategory.js
+│   ├── reactiveCategory.js
+│   ├── reactiveProduct.js
+│   ├── reactiveSupplier.js
 │   ├── registerCategory.js
 │   ├── registerProduct.js
 │   ├── registerSupplier.js

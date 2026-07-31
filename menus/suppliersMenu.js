@@ -14,7 +14,7 @@ async function suppliersMenu(user,rl,internalSystemMenu) {
     console.log("2. Listar fornecedores 📃");
     console.log("3. Editar fornecedor 📝");
     console.log("4. Excluir fornecedor 🗑️");
-    console.log("5. Reativar fornecedor");
+    console.log("5. Reativar fornecedor ✅");
     console.log("0. Voltar ↩️");
     
     let option = Number(await rl.question("\n📌 - Selecione a opção que deseja: ")); /* "option" recebe a opção escolhida pelo usuário e converte a string em número. */

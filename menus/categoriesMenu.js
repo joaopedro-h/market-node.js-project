@@ -14,7 +14,7 @@ async function categoriesMenu(user,rl,internalSystemMenu) {
     console.log("2. Listar categorias 📃");
     console.log("3. Editar categoria 📝");
     console.log("4. Excluir categoria 🗑️");
-    console.log("5. Reativar categoria");
+    console.log("5. Reativar categoria ✅");
     console.log("0. Voltar ↩️");
     
     let option = Number(await rl.question("\n📌 - Selecione a opção que deseja: ")); /* "option" recebe a opção escolhida pelo usuário e converte a string em número. */
